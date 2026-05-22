@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Snake 2D</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="hud">
+      <div class="hud-item"><span>Score</span><strong id="score">0</strong></div>
+      <div class="hud-item"><span>High Score</span><strong id="highScore">0</strong></div>
+      <div class="hud-item"><span>Level</span><strong id="level">1</strong></div>
+      <div class="hud-item"><span>Lives</span><strong id="lives">3</strong></div>
+      <div class="hud-item"><span>Speed</span><strong id="speed">1x</strong></div>
+    </header>
+
+    <section class="game-shell">
+      <canvas id="gameCanvas" width="720" height="480" aria-label="Snake game canvas"></canvas>
+
+      <div id="overlay" class="overlay">
+        <h1>Nova Snake</h1>
+        <p id="overlayMessage">Collect food, avoid walls and your tail, and chase a high score.</p>
+        <div class="overlay-actions">
+          <button id="startBtn" class="primary">Start Game</button>
+          <button id="pauseBtn" class="secondary">Pause</button>
+          <button id="restartBtn" class="secondary">Restart</button>
+        </div>
+        <p class="hint">
+          Controls: Arrow Keys / WASD to move, P to pause, R to restart.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel-row">
+      <article class="panel">
+        <h2>How to Play</h2>
+        <ul>
+          <li>Eat regular food for points and growth.</li>
+          <li>Collect power food for bonus points and temporary slow motion.</li>
+          <li>Every 5 foods increases level and speed.</li>
+          <li>You lose a life on collision. Game ends at 0 lives.</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h2>Session Stats</h2>
+        <ul id="statsList">
+          <li>Foods eaten: <strong id="foodsEaten">0</strong></li>
+          <li>Power foods: <strong id="powerFoods">0</strong></li>
+          <li>Longest snake: <strong id="longestSnake">3</strong></li>
+          <li>Time survived: <strong id="timeSurvived">00:00</strong></li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <script src="snake.js"></script>
+</body>
+</html>
