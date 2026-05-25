@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nova Mobile</title>
+  <style>
+    body{font-family:system-ui;background:#0b1020;color:#e6f1ff;margin:0}
+    .wrap{max-width:720px;margin:0 auto;padding:16px}
+    textarea,input,button{width:100%;padding:12px;border-radius:10px;border:1px solid #2d3a66;background:#111a33;color:#e6f1ff}
+    button{background:#1d4ed8;border:0;font-weight:600;margin-top:8px}
+    #log{white-space:pre-wrap;background:#0f172a;border:1px solid #2d3a66;padding:12px;border-radius:10px;min-height:160px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h2>Nova AI OS — Mobile</h2>
+  <p>Phone-first chat UI for Nova backend.</p>
+  <input id="chatId" placeholder="chat id (e.g. mobile-user)" value="mobile-user"/>
+  <textarea id="msg" rows="4" placeholder="Ask Nova something..."></textarea>
+  <button id="send">Send</button>
+  <h3>Response</h3>
+  <div id="log"></div>
+</div>
+<script>
+const sendBtn=document.getElementById('send');
+sendBtn.onclick=async()=>{
+  const chatId=document.getElementById('chatId').value.trim();
+  const message=document.getElementById('msg').value.trim();
+  const log=document.getElementById('log');
+  if(!chatId||!message) return;
+  log.textContent='Thinking...';
+  try{
+    const res=await fetch('/api/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({chatId,message})});
+    const data=await res.json();
+    log.textContent=data.reply||data.error||'No response';
+  }catch(e){log.textContent=String(e)}
+}
+</script>
+</body>
+</html>
